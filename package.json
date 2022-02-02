@@ -1,14 +1,23 @@
 {
-  "name": "note-taker",
+  "name": "duly_noted",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "devDependencies": {
+    "express": "^4.17.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rwood022/Duly_Noted.git"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.16.4"
-  }
+  "bugs": {
+    "url": "https://github.com/rwood022/Duly_Noted/issues"
+  },
+  "homepage": "https://github.com/rwood022/Duly_Noted#readme"
 }

@@ -16,14 +16,17 @@ app.use("/api", api);
 app.use(express.static("public"));
 
 // GET route homepage
-app.get("*", (req, res) =>
+app.get("*", (req, res) => {
+// res.sendFile("index.html", {root: "public"});
     res.sendFile(path.join(__dirname, "public/index.html"))
-);
+});
 
 // GET route notes page
-app.get("/notes", (req, res) =>
+app.get("/notes", (req, res) => {
+    // res.sendFile("index.html", {root: "public"});
+
     res.sendFile(path.join(__dirname, "public/notes.html"))
-);
+});
 
 
 app.listen(PORT, () => 
