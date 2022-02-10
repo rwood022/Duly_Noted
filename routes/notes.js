@@ -1,6 +1,8 @@
 const { timeStamp } = require("console");
-
+// const fs = require("fs");
+const path = require("path");
 const notes = require("express").Router();
+const { readFile, readAndAppend, writeFile } = require("fs");
 
 //GET route to retrieve api notes and parse to JSON
 notes.get("/api/notes", (req, res) => {
@@ -12,7 +14,7 @@ notes.get("/api/notes", (req, res) => {
 //GET route for specific note
 notes.get("/api/notes/:id", (req, res) => {
     const noteId = req.params.note_id;
-        fs.readFile("./db/db.json")
+        readFile("./db/db.json")
             .then((data) => JSON.parse(data))
             .then((json) => {
                 const result = json.filter((note) => note.note_id === noteId);
@@ -45,16 +47,18 @@ notes.post("/api/notes/:id",(req, res) => {
 // delete specific note
 notes.delete("/api/notes/:id", (req, res) => {
     const noteId = req.params.note_id;
-    fs.readFile("./db/db.json")
+    readFile("./db/db.json")
         .then((data) => JSON.parse(data))
         .then((json) => {
             const result = json.filter((note) => note.note_id !== noteId);
 
-            fs.writeFile("./db/db.json",
+            writeFile("./db/db.json",
             result);
 
             res.json(`Note ${noteId} has been removed`);
         });
 });
+
+
 
 module.exports = notes;

@@ -8,7 +8,7 @@ if (window.location.pathname === '/notes') {
   console.log(window.location.pathname);
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
-  saveNoteBtn = document.querySelector('.save-note');
+  saveNoteBtn = document.querySelector('.fa-floppy-disk');
   newNoteBtn = document.querySelector('.new-note');
   noteList = document.querySelectorAll('.list-container .list-group');
 }

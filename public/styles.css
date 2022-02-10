@@ -5,8 +5,9 @@ body {
   padding: 0;
 }
 
-.save-note {
-  display: none;
+.fa-floppy-disk {
+  display: inline;
+  color: palevioletred;
 }
 
 .icons i {
