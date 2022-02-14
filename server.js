@@ -1,5 +1,5 @@
 const express = require('express');
-const fs = require("fs");
+// const fs = require("fs");
 const path = require('path');
 const api = require('./routes');
 
@@ -22,9 +22,10 @@ app.get("/notes", (req, res) => {
 });
 
 // GET route homepage
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./public/index.html"))
-});
+// app.get("*", (req, res) => {
+//     console.log("hewwo")
+//     res.sendFile(path.join(__dirname, "./public/index.html"))
+// });
 
 app.listen(PORT, () => 
     console.log(`App listening at http://localhost:${PORT}`)
