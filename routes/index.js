@@ -7,6 +7,6 @@ const app = express();
 
 app.get('/something', (req, res) => res.json('hi'))
 
-app.use("/notes", notesRouter);
+app.use("/api", notesRouter);
 
 module.exports = app;

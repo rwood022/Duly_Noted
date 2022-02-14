@@ -1,16 +1,20 @@
 const { timeStamp } = require("console");
-// const fs = require("fs");
+const fs = require("fs");
 const path = require("path");
 const notes = require("express").Router();
 const { readFile, readAndAppend, writeFile } = require("fs");
 
-//GET route to retrieve api notes and parse to JSON
-notes.get("/api/notes", (req, res) => {
+GET route to retrieve api notes and parse to JSON
+notes.get("/notes", (req, res) => {
     console.log("call?")
-    readFile("./db/db.json").then(
-        (data) => res.json(JSON.parse(data))
-    );
-});
+    fs.readFile("../db/db.json", "utf8", function(error, data){
+        if(error){console.log(error)} 
+        else{
+            var notes = JSON.parse(data)
+            res.json( notes )
+        }
+    })
+})
 
 //GET route for specific note
 notes.get("/api/notes/:id", (req, res) => {

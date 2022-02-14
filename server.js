@@ -1,5 +1,5 @@
 const express = require('express');
-// const fs = require("fs");
+const fs = require("fs");
 const path = require('path');
 const api = require('./routes');
 
@@ -14,7 +14,16 @@ app.use("/api", api);
 
 app.use(express.static("public"));
 
-
+// app.get("/api/notes", (req, res) => {
+//     console.log("call?")
+//     fs.readFile("./db/db.json", "utf8", function(error, data){
+//         if(error){console.log(error)} 
+//         else{
+//             var notes = JSON.parse(data)
+//             res.json( notes )
+//         }
+//     })
+// })
 
 // GET route notes page
 app.get("/notes", (req, res) => {
