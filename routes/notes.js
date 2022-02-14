@@ -6,7 +6,7 @@ const { readFile, readAndAppend, writeFile } = require("fs");
 
 //GET route to retrieve api notes and parse to JSON
 notes.get("/api/notes", (req, res) => {
-    fs.readFile("./db/db.json").then(
+    readFile("./db/db.json").then(
         (data) => res.json(JSON.parse(data))
     );
 });
