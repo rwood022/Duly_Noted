@@ -4,8 +4,8 @@ const path = require("path");
 const notes = require("express").Router();
 const { readFile, readAndAppend, writeFile } = require("fs");
 
-GET route to retrieve api notes and parse to JSON
-notes.get("/notes", (req, res) => {
+// GET route to retrieve api notes and parse to JSON
+notes.get("/", (req, res) => {
     console.log("call?")
     fs.readFile("../db/db.json", "utf8", function(error, data){
         if(error){console.log(error)} 
@@ -17,20 +17,25 @@ notes.get("/notes", (req, res) => {
 })
 
 //GET route for specific note
-notes.get("/api/notes/:id", (req, res) => {
+notes.get("/:note_id", (req, res) => {
     const noteId = req.params.note_id;
-        readFile("./db/db.json")
-            .then((data) => JSON.parse(data))
-            .then((json) => {
-                const result = json.filter((note) => note.note_id === noteId);
-                return result.length > 0
-                    ? res.json(result)
-                    : res.json("No note with that ID");
-
-            });
-});
+        fs.readFile("../db/db.json", "utf8", function(error, data){
+            // if (error){console.log(error)
+            // } else {
+            // .then((data) => JSON.parse(data))
+            // .then((json) => {
+            //     const result = json.filter((note) => note.note_id === noteId);
+            //     return result.length > 0
+            //         ? res.json(result)
+            //         : res.json("No note with that ID");
+            //     }
+            // }
+        })        
+    
+            
+})
 // POST specific note to server
-notes.post("/api/notes/:id",(req, res) => {
+notes.post("/",(req, res) => {
     console.log(req.body);
 
     const{ title, text } = req.body;
@@ -41,7 +46,7 @@ notes.post("/api/notes/:id",(req, res) => {
                 text,
             };
 
-            readAndAppend(newNote, "./db/db.json");
+            // fs.readAndAppend(newNote, "../db/db.json");
             res.json(`Note added!`);
         }   else {
             res.error("Adding note: ERROR ");
@@ -52,7 +57,7 @@ notes.post("/api/notes/:id",(req, res) => {
 // delete specific note
 notes.delete("/api/notes/:id", (req, res) => {
     const noteId = req.params.note_id;
-    readFile("./db/db.json")
+    fs.readFile("../db/db.json")
         .then((data) => JSON.parse(data))
         .then((json) => {
             const result = json.filter((note) => note.note_id !== noteId);
